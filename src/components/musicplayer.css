@@ -136,13 +136,14 @@
   width: 80%;
   margin-bottom: 1rem;
   margin-top: .5rem;
+  
 }
 
 .controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 0.5rem;
 }
 
@@ -182,6 +183,7 @@
 .volume-control {
   margin-top: 1rem;
   width: 85%;
+  align-items: center;
 }
 
 .volume-control label {
@@ -201,6 +203,7 @@
   margin-top: 1rem;
   margin-bottom: 2rem;
   width: 80%;
+  align-items: center;
 }
 
 .track-selector select {
