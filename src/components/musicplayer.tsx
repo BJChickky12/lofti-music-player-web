@@ -3,11 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import '../components/musicplayer.css'; // Assume we'll replace this with plain CSS
-import playlist from '@/app/data/song_library';
+import playlist from '../app/data/song_library';
 
-export default function MusicPlayer({ onBackgroundChange, userPlaylist }) {
+type Track = {
+  title: string;
+  cover: string;
+  audioSrc: string;
+};
+
+type Props = {
+  onBackgroundChange?: (coverUrl: string) => void;
+  userPlaylist: Track[];
+};
+
+export default function MusicPlayer({ onBackgroundChange, userPlaylist }: Props) {
   const waveFormRef = useRef(null);
-  const wavesurfer = useRef(null);
+  const wavesurfer = useRef<WaveSurfer | null>(null);
 
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -23,8 +34,8 @@ export default function MusicPlayer({ onBackgroundChange, userPlaylist }) {
     localStorage.setItem('lastTrack', currentTrack.toString());
   }, [currentTrack]);
 
-  const activePlaylist = useUserLibrary ? userPlaylist : playlist;
-  const current = activePlaylist[currentTrack] || {};
+  const activePlaylist: Track[] = useUserLibrary ? userPlaylist : playlist;
+  const current: Track | undefined = activePlaylist[currentTrack];
 
   useEffect(() => {
     if (!waveFormRef.current) return;
@@ -40,8 +51,7 @@ export default function MusicPlayer({ onBackgroundChange, userPlaylist }) {
       height: 32,
       barWidth: 2,
       interact: true,
-      barRadius: true,
-      duration: true,
+      barGap: 2
     });
 
     wavesurfer.current.load(current.audioSrc);
@@ -52,7 +62,7 @@ export default function MusicPlayer({ onBackgroundChange, userPlaylist }) {
 
     wavesurfer.current.on('ready', () => {
       if (isPlaying) {
-        wavesurfer.current.play();
+        wavesurfer.current?.play();
       }
     });
 
@@ -71,7 +81,7 @@ export default function MusicPlayer({ onBackgroundChange, userPlaylist }) {
     setIsPlaying(!isPlaying);
   };
 
-  const switchTracks = (index) => {
+  const switchTracks = (index: number) => {
     const currentList = useUserLibrary ? userPlaylist : playlist;
     if (index < 0) index = currentList.length - 1;
     if (index >= currentList.length) index = 0;

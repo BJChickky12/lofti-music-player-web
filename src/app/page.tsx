@@ -1,6 +1,6 @@
 'use client';
 
-import MusicPlayer from '@/components/musicplayer';
+import MusicPlayer from '../components/musicplayer';
 import { useState } from 'react';
 import './globals.css';
 
