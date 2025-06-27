@@ -5,7 +5,7 @@ import "./globals.css";
 const vt323 = VT323({
   subsets: ['latin'],
   weight: '400',
-  variable: '--font pixel',
+  variable: '--font-pixel',
 })
 
 export const metadata: Metadata = {
