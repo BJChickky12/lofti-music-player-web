@@ -117,7 +117,7 @@ export default function MusicPlayer({ onBackgroundChange, userPlaylist }: Props)
         </button>
       </div>
       <div className="content-wrapper">
-        <h2 className="track-title">{current.title}</h2>
+        <h2 className="track-title">{current.title?.length > 15 ? current.title.slice(0, 12) + '...' : current.title}</h2>
 
         <div ref={waveFormRef} className="waveform"></div>
 
