@@ -136,15 +136,17 @@
   width: 80%;
   margin-bottom: 1rem;
   margin-top: .5rem;
-  
+  align-self: center;
+  position: relative;
 }
 
 .controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   margin-top: 0.5rem;
+
 }
 
 .control-button {
