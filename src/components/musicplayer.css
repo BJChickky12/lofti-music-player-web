@@ -1,0 +1,11 @@
+.pixel-text-header {
+  font-family: 'VT323';
+  color: white;
+  font-size: 30px;
+}
+
+.pixel-text {
+    font-family: 'VT323';
+    color: white;
+    font-size: 15px;
+}
